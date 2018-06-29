@@ -10,7 +10,7 @@
     "server:build": "cross-env NODE_ENV=production webpack --config ./build/webpack.server.conf.js",
     "build-all": "npm run client:build && npm run server:build",
     "start:dev": "concurrently \"npm run client:dev\" \"npm run server:dev\"",
-    "start:prod": "node server/bin.js"
+    "start:prod": "cross-env NODE_ENV=production node server/bin.js"
   },
   "dependencies": {
     "@vert/core": "^0.2.0",

@@ -9,7 +9,7 @@ export default class AboutPage extends AppComponent {
     await sleep(1000)
     console.log('Wow 2')
     return {
-      oldSaying: 'Fa'g
+      oldSaying: 'Fa'
     }
   }
 }

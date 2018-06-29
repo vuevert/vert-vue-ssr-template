@@ -66,8 +66,7 @@ module.exports = async function handler (ctx) {
   }
 
   try {
-    const htmlString = await renderer.renderToString(context)
-    ctx.body = htmlString
+    ctx.body = await renderer.renderToString(context)
   } catch (error) {
     console.error('[Error] SSR render error:', error)
     ctx.body = error.message || 'SSR unknown renderer error'

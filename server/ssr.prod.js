@@ -12,17 +12,13 @@ const renderer = createBundleRenderer(bundle, {
 })
 
 module.exports = async function handler (ctx) {
-  ctx.type = 'html'
-
   const context = {
     url: ctx.path
   }
 
   try {
-    const htmlString = await renderer.renderToString(context)
-    ctx.body = htmlString
+    ctx.body = await renderer.renderToString(context)
   } catch (error) {
-    console.error('[Error] SSR render error:', error)
-    ctx.body = error.message || 'SSR unknown renderer error'
+    ctx.body = error
   }
 }
