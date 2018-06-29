@@ -2,7 +2,7 @@
 
 > Vue project template with SSR, Vert and TypeScript support.
 
-A tiny demo to show how to use [@vert/core]().
+A tiny demo to show how to use [@vert/core](https://github.com/LancerComet/Vert-Core).
 
 You can use this as your vert template.
 
@@ -11,7 +11,7 @@ You can use this as your vert template.
  - Vue SSR support.
  - Full TypeScript.
  - Code in OOP.
- - [@vert/core]() support.
+ - [@vert/core](https://github.com/LancerComet/Vert-Core) support.
 
 ## Commands
 
