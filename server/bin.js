@@ -1,7 +1,7 @@
 const path = require('path')
 
 const Koa = require('koa')
-const koaStatic = require('koa-static')
+const serve = require('koa-static')
 const bodyparser = require('koa-bodyparser')
 
 const { ssrPort } = require('../build/build-config')
@@ -12,7 +12,9 @@ app.use(bodyparser())
 let ssrRouter = null
 switch (process.env.NODE_ENV) {
   case 'production':
-    app.use(koaStatic(path.join(__dirname, '../dist')))
+    app.use(serve(path.resolve(__dirname, '../dist'), {
+      index: 'default.html'  // Set to anything but 'index.html' to use ssr.
+    }))
     ssrRouter = require('./ssr.prod.js')
     break
 

@@ -8,7 +8,7 @@ const isDev = process.env.NODE_ENV === 'development'
 module.exports = {
   output: {
     publicPath: isDev
-      ? `//localhost:${clientPort}/`  // 开发时请绑定此域名.
+      ? `//localhost:${clientPort}/`  // Please bind this hostname to 127.0.0.1 when developing.
       : '/'
   },
 

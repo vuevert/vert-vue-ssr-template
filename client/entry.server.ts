@@ -21,7 +21,6 @@ export default context => {
         const asyncDataFunc = Component['asyncData'] ||
           Component['extendOptions']['asyncData']
         if (typeof asyncDataFunc === 'function') {
-          console.log(Component)
           return asyncDataFunc({
             store,
             route: router.currentRoute

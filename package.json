@@ -6,7 +6,7 @@
   "scripts": {
     "client:dev": "cross-env NODE_ENV=development webpack-dev-server --config ./build/webpack.client.conf.js",
     "client:build": "cross-env NODE_ENV=production webpack --config ./build/webpack.client.conf.js",
-    "server:dev": "nodemon ./server/bin.js",
+    "server:dev": "cross-env NODE_ENV=development nodemon ./server/bin.js",
     "server:build": "cross-env NODE_ENV=production webpack --config ./build/webpack.server.conf.js",
     "build-all": "npm run client:build && npm run server:build",
     "start:dev": "concurrently \"npm run client:dev\" \"npm run server:dev\"",
