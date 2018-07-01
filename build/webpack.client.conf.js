@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const merge = require('webpack-merge')
 const VueClientPlugin = require('vue-server-renderer/client-plugin')
 
-const { clientPort, distPath } = require('./build-config')
+const { appName, clientPort, distPath, env } = require('./build-config')
 const { cssLoader, stylusLoader } = require('./style-loader.conf')
 const baseConfig = require('./webpack.base.conf')
 
@@ -33,22 +33,20 @@ const webpackConfig = merge(baseConfig, {
   plugins: [
     new VueClientPlugin(),
 
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+    new webpack.DefinePlugin(Object.assign({}, env, {
       'process.env.VUE_ENV': JSON.stringify('client')
+    })),
+
+    new HtmlWebpackPlugin({
+      template: rootResolve('./index.html'),
+      minify: true,
+      inject: true,
+      title: appName
     })
   ]
 })
 
 if (isProduction) {
-  webpackConfig.plugins.push(
-    new HtmlWebpackPlugin({
-      template: rootResolve('./index.html'),
-      minify: true,
-      inject: true,
-      isSSR: false
-    })
-  )
   webpackConfig.plugins.push(
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].[contenthash].css',

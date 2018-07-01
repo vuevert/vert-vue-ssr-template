@@ -1,8 +1,14 @@
+<!--
+   <%= htmlWebpackPlugin.options.title %>
+   Build time: <%= process.env.BUILD_TIME %>
+   Environment: <%= process.env.NODE_ENV %>
+   SSR Enabled: false
+-->
 <!DOCTYPE html>
 <html lang="zh-cmn-hans">
   <head>
     <meta charset="UTF-8">
-    <title>Vue ssr template.</title>
+    <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
 
   <body>

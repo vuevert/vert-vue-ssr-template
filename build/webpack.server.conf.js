@@ -6,7 +6,7 @@ const nodeExternals = require('webpack-node-externals')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const VueServerPlugin = require('vue-server-renderer/server-plugin')
 
-const { distPath } = require('./build-config')
+const { distPath, env } = require('./build-config')
 const { cssLoader, stylusLoader } = require('./style-loader.conf')
 const baseConfig = require('./webpack.base.conf')
 
@@ -40,10 +40,9 @@ const webpackConfig = merge(baseConfig, {
   plugins: [
     new VueServerPlugin(),
 
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+    new webpack.DefinePlugin(Object.assign({}, env, {
       'process.env.VUE_ENV': JSON.stringify('server')
-    })
+    }))
   ]
 })
 

@@ -7,7 +7,7 @@ export default context => {
 
     router.push(context.url)
 
-    router.onReady(() => {
+    router.onReady(async () => {
       const matchedComponents = router.getMatchedComponents()
 
       if (!matchedComponents.length) {
@@ -17,19 +17,21 @@ export default context => {
         })
       }
 
-      Promise.all(matchedComponents.map((Component) => {
-        const asyncDataFunc = Component['asyncData'] ||
-          Component['extendOptions']['asyncData']
-        if (typeof asyncDataFunc === 'function') {
-          return asyncDataFunc({
-            store,
-            route: router.currentRoute
-          })
-        }
-      })).then(() => {
+      try {
+        await Promise.all(matchedComponents.map((Component) => {
+          const asyncDataFunc = Component['asyncData'] || Component['extendOptions']['asyncData']
+          if (typeof asyncDataFunc === 'function') {
+            return asyncDataFunc({
+              store,
+              route: router.currentRoute
+            })
+          }
+        }))
         context.state = store.state
         resolve(app)
-      }).catch(reject)
+      } catch (error) {
+        reject(error)
+      }
     }, reject)
   })
 }

@@ -1,6 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const { createBundleRenderer } = require('vue-server-renderer')
+const { templateEnvs } = require('./ssr.config')
 
 const bundle = require('../dist/vue-ssr-server-bundle.json')
 const renderer = createBundleRenderer(bundle, {
@@ -9,10 +10,9 @@ const renderer = createBundleRenderer(bundle, {
 })
 
 module.exports = async function handler (ctx) {
-  const context = {
-    url: ctx.path,
-    title: '@Vert/Vue-SSR-Template'
-  }
+  const context = Object.assign(templateEnvs(), {
+    url: ctx.path
+  })
 
   try {
     ctx.body = await renderer.renderToString(context)

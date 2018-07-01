@@ -8,6 +8,7 @@ const VueServerRenderer = require('vue-server-renderer')
 const serverConfig = require('../build/webpack.server.conf')
 const serverCompiler = webpack(serverConfig)
 const { clientPort } = require('../build/build-config')
+const { templateEnvs } = require('./ssr.config')
 
 const mfs = new MemoryFs()
 serverCompiler.outputFileSystem = mfs
@@ -60,10 +61,9 @@ module.exports = async function handler (ctx) {
     clientManifest
   })
 
-  const context = {
-    url,
-    title: '@Vert/Vue-SSR-Template'
-  }
+  const context = Object.assign(templateEnvs(), {
+    url
+  })
 
   try {
     ctx.body = await renderer.renderToString(context)
