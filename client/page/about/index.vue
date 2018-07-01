@@ -4,7 +4,10 @@
     p {{oldSaying}}
 
     div
+      Button(@click="changeOldSaying") Change old saying
+
+    div
       router-link(to="/") Index
 </template>
 
-<script lang="ts" src="./about.ts"></script>
+<script lang="ts" src="./index.ts"></script>

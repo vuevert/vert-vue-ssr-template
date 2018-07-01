@@ -17,21 +17,18 @@ export default context => {
         })
       }
 
-      try {
-        await Promise.all(matchedComponents.map((Component) => {
-          const asyncDataFunc = Component['asyncData'] || Component['extendOptions']['asyncData']
-          if (typeof asyncDataFunc === 'function') {
-            return asyncDataFunc({
-              store,
-              route: router.currentRoute
-            })
-          }
-        }))
+      Promise.all(matchedComponents.map((Component) => {
+        const asyncDataFunc = Component['asyncData'] || Component['extendOptions']['asyncData']
+        if (typeof asyncDataFunc === 'function') {
+          return asyncDataFunc({
+            store,
+            route: router.currentRoute
+          })
+        }
+      })).then(() => {
         context.state = store.state
         resolve(app)
-      } catch (error) {
-        reject(error)
-      }
+      }).catch(reject)
     }, reject)
   })
 }

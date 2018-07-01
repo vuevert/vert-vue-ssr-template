@@ -67,7 +67,8 @@ if (isProduction) {
     quiet: true,
     compress: false,
     port: clientPort,
-    proxy: {}
+    proxy: {},
+    historyApiFallback: true
   }
 }
 

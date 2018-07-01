@@ -5,8 +5,8 @@ function createRouter () {
     mode: 'history',
     fallback: true,
     routes: [
-      { path: '/', component: () => import('../page/index.vue') },
-      { path: '/about', component: () => import('../page/about.vue') }
+      { path: '/', component: () => import('../page/index/index.vue') },
+      { path: '/about', component: () => import('../page/about/index.vue') }
     ]
   })
 }
