@@ -6,7 +6,8 @@ const { templateEnvs } = require('./ssr.config')
 const bundle = require('../dist/vue-ssr-server-bundle.json')
 const renderer = createBundleRenderer(bundle, {
   template: fs.readFileSync(path.resolve(__dirname, './template.html'), 'utf-8'),
-  clientManifest: require('../dist/vue-ssr-client-manifest.json')
+  clientManifest: require('../dist/vue-ssr-client-manifest.json'),
+  runInNewContext: false
 })
 
 module.exports = async function handler (ctx) {

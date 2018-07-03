@@ -13,7 +13,7 @@ let ssrRouter = null
 switch (process.env.NODE_ENV) {
   case 'production':
     app.use(serve(path.resolve(__dirname, '../dist'), {
-      index: 'default.html'  // Set to anything but 'index.html' to use ssr.
+      index: 'does-not-exist.html'  // Set to anything but 'index.html' to use ssr.
     }))
     ssrRouter = require('./ssr.prod.js')
     break

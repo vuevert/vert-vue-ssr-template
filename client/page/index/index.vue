@@ -10,7 +10,7 @@
     p You can checkout these page too:
     ul
       li
-        router-link(to="/about") About
+        router-link(to="/about/me") About
 </template>
 
 <script lang="ts" src="./index.ts"></script>

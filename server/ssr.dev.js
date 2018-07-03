@@ -55,10 +55,10 @@ module.exports = async function handler (ctx) {
     return
   }
 
-  const template = fs.readFileSync(path.resolve(__dirname, './template.html'), 'utf-8')
   const renderer = VueServerRenderer.createBundleRenderer(bundle, {
-    template,
-    clientManifest
+    clientManifest,
+    template: fs.readFileSync(path.resolve(__dirname, './template.html'), 'utf-8'),
+    runInNewContext: false
   })
 
   const context = Object.assign(templateEnvs(), {

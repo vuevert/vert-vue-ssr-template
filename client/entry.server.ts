@@ -7,7 +7,7 @@ export default context => {
 
     router.push(context.url)
 
-    router.onReady(async () => {
+    router.onReady(() => {
       const matchedComponents = router.getMatchedComponents()
 
       if (!matchedComponents.length) {
@@ -18,7 +18,7 @@ export default context => {
       }
 
       Promise.all(matchedComponents.map((Component) => {
-        const asyncDataFunc = Component['asyncData'] || Component['extendOptions']['asyncData']
+        const asyncDataFunc = Component['asyncData'] || (Component['options'] || {})['asyncData']
         if (typeof asyncDataFunc === 'function') {
           return asyncDataFunc({
             store,
