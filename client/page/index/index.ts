@@ -1,9 +1,11 @@
-import { AppComponent, Component } from '@vert/core'
+import { Component } from '@vert/core'
+import Vue from 'vue'
+
 import { GreetingService } from '../../service/greeting'
 import { IUser, UserService } from '../../service/user'
 
 @Component
-export default class AppIndex extends AppComponent {
+export default class AppIndex extends Vue {
   pageName: string = ''
   userList: IUser[] = []
 

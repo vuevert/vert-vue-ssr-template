@@ -1,10 +1,10 @@
-import { App, Injector } from '@vert/core'
+import { App } from '@vert/core'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Vuex from 'vuex'
 import { sync } from 'vuex-router-sync'
 
-import RootComponent from './root-component.vue'
+import Layout from './layout/index.vue'
 import { createRouter } from './router'
 import { createStore } from './store'
 
@@ -20,13 +20,7 @@ function initVue () {
 }
 
 function initService () {
-  const Services = [
-    GreetingService, UserService
-  ]
-  const injector = Injector.create(...Services)
-  Services.forEach((Service: any) => {
-    App.addSingleton(Service, injector.get(Service))
-  })
+  App.addSingleton(GreetingService, UserService)
 }
 
 function createApp () {
@@ -38,9 +32,7 @@ function createApp () {
   const app = new Vue({
     router,
     store,
-    render (h) {
-      return h(RootComponent)
-    }
+    render: h => h(Layout)
   })
 
   return {
