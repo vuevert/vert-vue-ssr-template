@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@vert/core": "^1.0.1",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "babel-polyfill": "^6.26.0",
     "koa": "^2.5.0",
     "koa-bodyparser": "^4.2.0",
