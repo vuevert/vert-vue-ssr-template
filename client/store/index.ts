@@ -1,10 +1,12 @@
 import Vuex from 'vuex'
 
-import { about } from '../page/about/store'
+import { index } from './modules/index'
+import { about } from './modules/about'
 
 function createStore () {
   return new Vuex.Store({
     modules: {
+      index,
       about
     }
   })

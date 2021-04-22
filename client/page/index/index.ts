@@ -7,17 +7,17 @@ import { IUser, UserService } from '../../service/user'
 @Component
 export default class AppIndex extends Vue {
   pageName: string = ''
-  userList: IUser[] = []
 
-  async created () {
-    this.greetingSrv.greet('Index')
-    this.userList = await this.userSrv.getUserList()
+  private get userList (): IUser[] {
+    return this.$store.getters['index/userList']
   }
 
-  constructor (
-    private greetingSrv: GreetingService,
-    private userSrv: UserService
-  ) {
-    super()
+  private async asyncData ({ store, to }) {
+    const userList = await UserService.getUserList()
+    return store.commit('index/setUserList', userList)
+  }
+
+  private created () {
+    GreetingService.greet('Index')
   }
 }

@@ -1,8 +1,5 @@
-import { Injectable } from '@vert/core'
-
-@Injectable()
-class UserService {
-  async getUserList (): Promise<IUser[]> {
+abstract class UserService {
+  static async getUserList (): Promise<IUser[]> {
     return [
       { name: 'LancerComet', age: 10 },
       { name: 'Wch', age: 20 }

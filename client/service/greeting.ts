@@ -1,8 +1,5 @@
-import { Injectable } from '@vert/core'
-
-@Injectable()
-class GreetingService {
-  greet (name: string) {
+abstract class GreetingService {
+  static greet (name: string) {
     console.log(`Hello, ${name}!`)
   }
 }
