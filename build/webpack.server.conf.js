@@ -24,10 +24,9 @@ const webpackConfig = merge(baseConfig, {
   },
 
   externals: nodeExternals({
-    whitelist: [
+    allowlist: [
       /\.css$/,
-      /\.vue$/,
-      /babel-polyfill/
+      /\.vue$/
     ]
   }),
 

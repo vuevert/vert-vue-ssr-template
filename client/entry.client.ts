@@ -1,7 +1,6 @@
 /* tslint:disable:ordered-imports */
 
 import 'reflect-metadata'
-import 'babel-polyfill'
 import Vue from 'vue'
 
 import { createApp } from './app'
